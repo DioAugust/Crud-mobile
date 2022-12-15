@@ -12,7 +12,7 @@ import axios from 'axios'
 import { styles } from './styles'
 
 
-export function Home({ navigation }) {
+export function Home({ navigation, route }) {
 
   // Botar o seu na hora de rodar
   const enderecoLocal = '192.168.1.8'
@@ -32,6 +32,16 @@ export function Home({ navigation }) {
   }, [refresh])
 
   const [lista, setLista] = useState([]);
+  const [Email, setEmail] = useState()
+
+  useEffect(() => {
+    if (route.params) {
+      const { email } = route.params
+
+      setEmail(email)
+      console.log(email)
+    }
+  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,11 +63,18 @@ export function Home({ navigation }) {
             size={25}
             color="black" />
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => { navigation.navigate('Perfil') }}>
+          <AntDesign
+            name="user"
+            size={25}
+            color="black" />
+        </TouchableOpacity>
       </View>
       <ScrollView style={styles.scroll}>
         {
           lista.map((l, i) => (
-            <TouchableOpacity onPress={() => navigation.navigate('AlterarProduto',
+            <TouchableOpacity key={i} onPress={() => navigation.navigate('AlterarProduto',
               {
                 nome: l.nome,
                 armazenamento: l.armazenamento,

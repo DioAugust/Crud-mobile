@@ -33,25 +33,19 @@ export function TelaLogin({ navigation }) {
             email: Email,
             senha: Senha
         }).then(function (response) {
-            if (response.status == 401) {
-                showMessage({
-                    message: "Login ou senha incorretos!",
-                    type: "danger",
-                    position: "center"
-                })
-                Vibration.vibrate()
-                return
-            } else {
                 showMessage({
                     message: "Login feito!",
                     type: "success",
                     position: "center"
                 });
-                navigation.navigate('Home')
-            }
+                setEmail(null)
+                setSenha(null)
+                navigation.navigate('Home', { 
+                    email: Email
+                })
         }).catch(function (error) {
             showMessage({
-                message: "Ocorreu um erro ao efetuar login",
+                message: "Login ou senha incorretos!",
                 type: "danger",
                 position: "center"
             });
