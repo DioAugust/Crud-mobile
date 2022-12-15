@@ -33,6 +33,34 @@ app.post('/usuarios/login', (req, res) => {
         console.log(error)
       })
 })
+
+// Pega o id do usuario
+app.get('/usuario/:email', (req, res) => {
+    return operations.getId(req.params.email)
+    .then(([ rows ]) => {
+        console.log(rows[0])
+        res.send(rows[0])
+        res.end()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+app.get('/usuario/dados/:id', (req, res) => {
+    console.log(req.params.id)
+    return operations.user(req.params.id)
+    .then(([ rows ]) => {
+        console.log(rows)
+        res.send(rows)
+        res.end()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+
 // Cadastro usuario
 app.post('/usuarios/cadastro', (req, res) => {
     return operations.saveUser(req.body)
@@ -56,6 +84,7 @@ app.get('/produtos', (req, res) => {
         console.log(err)
     })
 })
+
 // Cadastro de produtos
 app.post('/produtos/cadastro', (req, res) => {
     return operations.saveProduct(req.body)

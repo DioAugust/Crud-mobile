@@ -38,11 +38,17 @@ export function TelaLogin({ navigation }) {
                     type: "success",
                     position: "center"
                 });
+
+                axios.get(`http://${enderecoLocal}:3000/usuario/` + Email)
+                .then(function (response) {
+                    navigation.navigate('Home', { 
+                        id: response.data.id
+                    })
+                })
+
                 setEmail(null)
                 setSenha(null)
-                navigation.navigate('Home', { 
-                    email: Email
-                })
+
         }).catch(function (error) {
             showMessage({
                 message: "Login ou senha incorretos!",

@@ -5,6 +5,7 @@ import { Cadastro } from './screens/Cadastro';
 import { AlterarProduto } from './screens/AlterarProduto';
 import { CadastroProdutos } from './screens/CadastroProdutos';
 import { Home } from './screens/Home';
+import { Perfil } from './screens/Perfil';
 // Rotas
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -18,6 +19,7 @@ export default function App() {
       initialRouteName="TelaLogin"
       screenOptions={ {headerShown: false} }>
         <Stack.Screen name="TelaLogin" component={TelaLogin} />
+        <Stack.Screen name="Perfil" component={Perfil} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="AlterarProduto" component={AlterarProduto} />
         <Stack.Screen name="CadastroProdutos" component={CadastroProdutos} />

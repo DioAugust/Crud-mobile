@@ -32,14 +32,14 @@ export function Home({ navigation, route }) {
   }, [refresh])
 
   const [lista, setLista] = useState([]);
-  const [Email, setEmail] = useState()
+  const [Id, setId] = useState()
 
   useEffect(() => {
     if (route.params) {
-      const { email } = route.params
+      const { id } = route.params
 
-      setEmail(email)
-      console.log(email)
+      setId(id)
+      console.log(id)
     }
   }, [])
 
@@ -64,7 +64,9 @@ export function Home({ navigation, route }) {
             color="black" />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate('Perfil') }}>
+        <TouchableOpacity onPress={() => { navigation.navigate('Perfil', {
+          id: Id
+        }) }}>
           <AntDesign
             name="user"
             size={25}

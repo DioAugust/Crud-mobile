@@ -1,7 +1,7 @@
 const banco = require('./conexao.js')
 
 const operations = {
-    listProducts: function(cliente) {
+    listProducts: function() {
         return banco.promise().query("Select * from produto")
     },
     updateProduct: function(produto, id) {
@@ -18,7 +18,13 @@ const operations = {
     },
     login: function(usuario) {
         return banco.promise().execute("select * from usuario where (email=MD5(?) and senha=MD5(?))", [usuario.email, usuario.senha])
-    }
+    },
+    getId: function(email) {
+        return banco.promise().execute("select id from usuario where email=MD5(?)", [email])
+    },
+    user: function(id) {
+        return banco.promise().query("Select * from usuario where id=?", [id])
+    },
 }
 
 module.exports = operations
