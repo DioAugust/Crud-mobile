@@ -13,14 +13,15 @@ import { styles } from './styles';
 export function Cadastro({ navigation }) {
 
   // Botar o seu na hora de rodar
-  const enderecoLocal = '192.168.1.8'
+  const enderecoLocal = '192.168.1.6'
 
   const [Email, setEmail] = useState()
   const [Senha, setSenha] = useState()
   const [Nome, setNome] = useState()
+  const [Foto, setFoto] = useState()
 
   async function novoUser() {
-    if (Email == null || Senha == null || Nome == null) {
+    if (Email == null || Senha == null || Nome == null || Foto == null) {
       showMessage({
         message: "Preencha os campos!",
         type: "danger",
@@ -32,7 +33,8 @@ export function Cadastro({ navigation }) {
     await axios.post(`http://${enderecoLocal}:3000/usuarios/cadastro`, {
       email: Email,
       senha: Senha,
-      nome: Nome
+      nome: Nome,
+      foto: Foto
     })
       .then(function (response) {
         showMessage({
@@ -41,7 +43,6 @@ export function Cadastro({ navigation }) {
           position: "center"
         });
         navigation.navigate('TelaLogin')
-        console.log(response)
       }).catch(function (error) {
         showMessage({
           message: "Não foi possivel criar o login",
@@ -91,6 +92,12 @@ export function Cadastro({ navigation }) {
           style={styles.caixa}
           onChangeText={(texto) => setSenha(texto)}
           value={Senha} />
+
+        <Text style={styles.text}>Foto</Text>
+        <TextInput
+          style={styles.caixa}
+          onChangeText={(texto) => setFoto(texto)}
+          value={Foto} />
 
         <TouchableOpacity
           style={styles.botao}

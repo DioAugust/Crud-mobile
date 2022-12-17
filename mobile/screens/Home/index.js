@@ -15,7 +15,7 @@ import { styles } from './styles'
 export function Home({ navigation, route }) {
 
   // Botar o seu na hora de rodar
-  const enderecoLocal = '192.168.1.8'
+  const enderecoLocal = '192.168.1.6'
   
   const refresh = useIsFocused()
 
@@ -32,14 +32,13 @@ export function Home({ navigation, route }) {
   }, [refresh])
 
   const [lista, setLista] = useState([]);
-  const [Id, setId] = useState()
+  const [Email, setEmail] = useState()
 
   useEffect(() => {
     if (route.params) {
-      const { id } = route.params
+      const { email } = route.params
 
-      setId(id)
-      console.log(id)
+      setEmail(email)
     }
   }, [])
 
@@ -65,7 +64,7 @@ export function Home({ navigation, route }) {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => { navigation.navigate('Perfil', {
-          id: Id
+          email: Email
         }) }}>
           <AntDesign
             name="user"

@@ -12,7 +12,7 @@ import { styles } from './styles';
 export function AlterarProduto({ navigation, route }) {
 
   // Botar o seu na hora de rodar
-  const enderecoLocal = '192.168.1.8'
+  const enderecoLocal = '192.168.1.6'
 
   const [getNome, setNome] = useState()
   const [getArmazenamento, setArmazenamento] = useState()

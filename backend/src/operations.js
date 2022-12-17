@@ -14,17 +14,17 @@ const operations = {
         return banco.promise().execute("delete from produto where id=?", [id])
     },
     saveUser: function(usuario) {
-        return banco.promise().execute("insert into usuario (email, senha, nome) values (MD5(?),MD5(?),MD5(?))", [usuario.email, usuario.senha, usuario.nome])
+        return banco.promise().execute("insert into usuario (email, senha, nome, foto) values (MD5(?),MD5(?),?,?)", [usuario.email, usuario.senha, usuario.nome, usuario.foto])
     },
     login: function(usuario) {
         return banco.promise().execute("select * from usuario where (email=MD5(?) and senha=MD5(?))", [usuario.email, usuario.senha])
     },
-    getId: function(email) {
-        return banco.promise().execute("select id from usuario where email=MD5(?)", [email])
+    updateUser: function(usuario) {
+        return banco.promise().execute("update usuario set email=MD5(?), foto=?, nome=? where email=MD5(?)", [usuario.email, usuario.foto, usuario.nome, usuario.email])
     },
-    user: function(id) {
-        return banco.promise().query("Select * from usuario where id=?", [id])
-    },
+    getUserByEmail: function(email) {
+        return banco.promise().execute("select * from usuario where email=MD5(?)", [email])
+    }
 }
 
 module.exports = operations

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   dados: {
     marginTop: 180,
     backgroundColor: 'lightgray',
-    height: 450,
+    height: 500,
     width: 350,
     borderRadius: 10,
     alignItems: 'center',

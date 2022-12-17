@@ -12,7 +12,7 @@ import { styles } from './styles';
 
 export function TelaLogin({ navigation }) {
     // Botar o seu na hora de rodar
-    const enderecoLocal = '192.168.1.8'
+    const enderecoLocal = '192.168.1.6'
 
     const [Email, setEmail] = useState()
     const [Senha, setSenha] = useState()
@@ -33,21 +33,16 @@ export function TelaLogin({ navigation }) {
             email: Email,
             senha: Senha
         }).then(function (response) {
-                showMessage({
-                    message: "Login feito!",
-                    type: "success",
-                    position: "center"
-                });
-
-                axios.get(`http://${enderecoLocal}:3000/usuario/` + Email)
-                .then(function (response) {
-                    navigation.navigate('Home', { 
-                        id: response.data.id
-                    })
-                })
-
-                setEmail(null)
-                setSenha(null)
+            showMessage({
+                message: "Login feito!",
+                type: "success",
+                position: "center"
+            });
+            navigation.navigate('Home', {
+                email: Email
+            })
+            setEmail(null)
+            setSenha(null)
 
         }).catch(function (error) {
             showMessage({

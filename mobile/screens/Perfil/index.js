@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { showMessage } from "react-native-flash-message";
 import { useState, useEffect } from 'react';
 import { Avatar } from 'react-native-elements'
+import { useIsFocused } from '@react-navigation/native'
 // Componentes
 import { Entypo } from '@expo/vector-icons'
 import axios from 'axios'
@@ -14,22 +15,42 @@ import { styles } from './styles';
 export function Perfil({ navigation, route }) {
 
   // Botar o seu na hora de rodar
-  const enderecoLocal = '192.168.1.8'
+  const enderecoLocal = '192.168.1.6'
+
+  const refresh = useIsFocused()
 
   const [Email, setEmail] = useState()
+  const [Foto, setFoto] = useState()
   const [Nome, setNome] = useState()
-  const [Id, setId] = useState()
 
-  const image_url = { uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC52Ojk0Y6DHZh-C0-BZSRznWqPCBv4YGzOWcUCWrWK14rav99njKGf3dXuFGqu5HlP9E&usqp=CAU" }
+  const image_url = { uri: Foto }
 
   useEffect(() => {
-    if (route.params != null) {
-      setId(route.params.id)
+     function getUser(valor) {
+      console.log(Email)
+       axios.get(`http://${enderecoLocal}:3000/usuario/` + valor)
+        .then((response) => {
+          console.log(response.data[0])
+          setNome(response.data[0].nome)
+          setFoto(response.data[0].foto)
+        }).catch((error) => {
+          console.log(error)
+        })
     }
-  })
 
-  async function novoUser() {
-    if (Email == null || Nome == null) {
+    if (route.params) {
+      const { email } = route.params
+
+      setEmail(email)
+      getUser(email)
+    }
+      
+    
+    
+  }, [refresh])
+
+  async function alterarUser() {
+    if (Email == null || Foto == null || Nome == null) {
       showMessage({
         message: "Preencha os campos!",
         type: "danger",
@@ -38,21 +59,21 @@ export function Perfil({ navigation, route }) {
       Vibration.vibrate()
       return
     }
-    await axios.post(`http://${enderecoLocal}:3000/usuarios/cadastro`, {
+    await axios.put(`http://${enderecoLocal}:3000/usuario/atualizar`, {
       email: Email,
+      foto: Foto,
       nome: Nome
     })
       .then(function (response) {
         showMessage({
-          message: "Login criado!",
+          message: "Usuario atualizado",
           type: "success",
           position: "center"
         });
-        navigation.navigate('TelaLogin')
-        console.log(response)
+        navigation.navigate('Home')
       }).catch(function (error) {
         showMessage({
-          message: "Não foi possivel criar o login",
+          message: "Não foi possivel alterar os dados",
           type: "danger",
           position: "center"
         });
@@ -100,9 +121,15 @@ export function Perfil({ navigation, route }) {
           onChangeText={(texto) => setEmail(texto)}
           value={Email} />
 
+        <Text style={styles.text}>Foto</Text>
+        <TextInput
+          style={styles.caixa}
+          onChangeText={(texto) => setFoto(texto)}
+          value={Foto} />
+
         <TouchableOpacity
           style={styles.botao}
-          onPress={() => novoUser()}>
+          onPress={() => alterarUser()}>
           <Text style={styles.textBotao}>
             Atualizar
           </Text>

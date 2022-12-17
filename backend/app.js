@@ -20,7 +20,6 @@ app.use(express.urlencoded({ extended: true }))
 app.post('/usuarios/login', (req, res) => {
     return operations.login(req.body)
     .then(([ rows ]) => {
-        console.log(rows)
         if(rows.length > 0) {
         res.status(204)
         res.end()
@@ -32,32 +31,6 @@ app.post('/usuarios/login', (req, res) => {
     .catch(function (error) {
         console.log(error)
       })
-})
-
-// Pega o id do usuario
-app.get('/usuario/:email', (req, res) => {
-    return operations.getId(req.params.email)
-    .then(([ rows ]) => {
-        console.log(rows[0])
-        res.send(rows[0])
-        res.end()
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-})
-
-app.get('/usuario/dados/:id', (req, res) => {
-    console.log(req.params.id)
-    return operations.user(req.params.id)
-    .then(([ rows ]) => {
-        console.log(rows)
-        res.send(rows)
-        res.end()
-    })
-    .catch((err) => {
-        console.log(err)
-    })
 })
 
 
@@ -76,6 +49,18 @@ app.post('/usuarios/cadastro', (req, res) => {
 // Listar produtos
 app.get('/produtos', (req, res) => {
     return operations.listProducts()
+    .then(([ rows ]) => {
+        res.send(rows)
+        res.end()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+// Get user by email
+app.get('/usuario/:email', (req, res) => {
+    return operations.getUserByEmail(req.params.email)
     .then(([ rows ]) => {
         res.send(rows)
         res.end()
@@ -108,6 +93,20 @@ app.put('/produtos/:id', (req, res) => {
         console.log(err)
     })
 })
+
+// Alterar produto
+app.put('/usuario/atualizar', (req, res) => {
+    console.log(req.body)
+    return operations.updateUser(req.body)
+    .then(([ rows ]) => {
+        res.status(204)
+        res.end()
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
 // Deletar produto
 app.delete('/produtos/:id', (req, res) => {
         return operations.removeProduct(req.params.id)
