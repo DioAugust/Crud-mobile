@@ -3,7 +3,7 @@ import { Icon } from '@rneui/base';
 import axios from 'axios';
 // React import
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Text, TextInput, TouchableOpacity, Vibration, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, Vibration, View, Image } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import { useState } from 'react';
 // Styles import
@@ -58,6 +58,11 @@ export function TelaLogin({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <View>
+                <Image 
+                    style={styles.logo}
+                    source={{
+                        uri: 'https://github.com/DioAugust/Crud-mobile/blob/master/mobile/assets/logo.png',
+                        }}/>
                 <Icon
                     color="red"
                     name="account-circle"

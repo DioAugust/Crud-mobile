@@ -33,5 +33,9 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 30,
         color: 'white',
+      },
+      logo: {
+        width: 300,
+        height: 300,
       }
 });
