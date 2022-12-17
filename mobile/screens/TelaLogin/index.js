@@ -61,41 +61,40 @@ export function TelaLogin({ navigation }) {
                 <Image 
                     style={styles.logo}
                     source={{
-                        uri: 'https://github.com/DioAugust/Crud-mobile/blob/master/mobile/assets/logo.png',
+                        uri: 'https://images.vexels.com/media/users/3/207818/isolated/preview/df04bb2bfb541b8110f2c70ba7cfb164-silhueta-de-aguia-com-emblema-de-heraldica.png',
                         }}/>
-                <Icon
-                    color="red"
-                    name="account-circle"
-                    size={170}
-                    type="material" />
 
-                <Text style={styles.text}>Email</Text>
                 <TextInput
+                    placeholder="E-mail cadastrado"
                     keyboardType="email-address"
+                    placeholderTextColor="#bdb7af"
                     style={styles.caixa}
                     onChangeText={(texto) => setEmail(texto)}
                     value={Email} />
 
-                <Text style={styles.text}>Senha</Text>
                 <TextInput
+                    placeholder="Senha"
+                    placeholderTextColor="#bdb7af"
                     style={styles.caixa}
                     secureTextEntry={true}
                     onChangeText={(texto) => setSenha(texto)}
                     value={Senha} />
 
                 <TouchableOpacity
-                    style={styles.botao}
+                    style={[styles.botao, { backgroundColor: `#c20036` }]}
                     onPress={() => validarLogin()}>
                     <Text style={styles.textBotao}>
-                        Login
+                        LOG-IN
                     </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.botao, { backgroundColor: `red` }]}
+                    style={[styles.botao, 
+                        {borderWidth: 0.5,
+                        borderColor: '#e8e6e3',}]}
                     onPress={() => { navigation.navigate('Cadastro') }}>
                     <Text style={styles.textBotao}>
-                        Cadastro
+                        CADASTRE-SE
                     </Text>
                 </TouchableOpacity>
             </View>

@@ -3,36 +3,31 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#181a1b',
         alignItems: 'center',
         justifyContent: 'center',
       },
       caixa: {
         width: 300,
-        backgroundColor: "white",
+        color: 'white',
         borderRadius: 5,
-        height: 35,
-        borderColor: 'black', 
-        borderWidth: 1, 
-        marginBottom: 10
-      },
-      text: {
-        fontSize: 25,
-        marginBottom: 5
+        height: 40,
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
+        marginBottom: 10,
+        fontSize: 18,
       },
       botao: {
-        height: 50,
+        height: 40,
         display: 'flex',
         justifyContent: 'center',
-        borderRadius: 30,
         width: 300,
         marginTop: 20,
-        backgroundColor: '#3693ff'
       },
       textBotao: {
         textAlign: 'center',
-        fontSize: 30,
-        color: 'white',
+        fontSize: 20,
+        color: '#e8e6e3',
       },
       logo: {
         width: 300,
