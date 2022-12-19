@@ -1,11 +1,10 @@
 // Componentes
-import { Icon } from '@rneui/base';
 import axios from 'axios';
 // React import
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Text, TextInput, TouchableOpacity, Vibration, View, Image } from 'react-native';
+import { Text, TextInput, TouchableOpacity, Vibration, View, Image, useColorScheme } from 'react-native';
 import { showMessage } from "react-native-flash-message";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // Styles import
 import { styles } from './styles';
 
@@ -13,11 +12,17 @@ import { styles } from './styles';
 export function TelaLogin({ navigation }) {
     // Botar o seu na hora de rodar
     const enderecoLocal = '192.168.1.6'
+    const deviceColorScheme = useColorScheme();
+
+    console.log(deviceColorScheme)
 
     const [Email, setEmail] = useState()
     const [Senha, setSenha] = useState()
 
+    
+
     async function validarLogin() {
+
         // Validar campos
         if (Email == null || Senha == null) {
             showMessage({
@@ -63,6 +68,8 @@ export function TelaLogin({ navigation }) {
                     source={{
                         uri: 'https://images.vexels.com/media/users/3/207818/isolated/preview/df04bb2bfb541b8110f2c70ba7cfb164-silhueta-de-aguia-com-emblema-de-heraldica.png',
                         }}/>
+                
+                <Text>useColorScheme(): {deviceColorScheme}</Text>
 
                 <TextInput
                     placeholder="E-mail cadastrado"
