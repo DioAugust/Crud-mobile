@@ -1,5 +1,5 @@
 // React import
-import { TouchableOpacity, View, Text } from 'react-native'
+import { TouchableOpacity, View, Text, useColorScheme } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Card } from 'react-native-elements'
@@ -18,6 +18,20 @@ export function Home({ navigation, route }) {
   const enderecoLocal = '192.168.1.6'
   
   const refresh = useIsFocused()
+
+  const deviceColorScheme = useColorScheme();
+  const [backColor, setBackColor] = useState('')
+  const [textColor, setTextColor] = useState('')
+
+  useEffect(() => {
+    if (deviceColorScheme == 'dark') {
+      setBackColor('#181a1b')
+      setTextColor('#FFF')
+    } else {
+      setBackColor('#FFF')
+      setTextColor('#000')
+    }
+  })
 
   useEffect(() => {
     function listarProdutos() {
@@ -43,16 +57,16 @@ export function Home({ navigation, route }) {
   }, [])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: backColor}]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => { navigation.goBack() }}>
           <Entypo
             name="chevron-thin-left"
             size={25}
-            color={'black'}
+            color={textColor}
           />
         </TouchableOpacity>
-        <Text style={styles.texto}>
+        <Text style={[styles.texto, {color: textColor}]}>
           Lista de produtos
         </Text>
 
@@ -60,7 +74,7 @@ export function Home({ navigation, route }) {
           <AntDesign
             name="plus"
             size={25}
-            color="black" />
+            color={textColor} />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => { navigation.navigate('Perfil', {
@@ -69,7 +83,7 @@ export function Home({ navigation, route }) {
           <AntDesign
             name="user"
             size={25}
-            color="black" />
+            color={textColor}/>
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.scroll}>

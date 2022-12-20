@@ -12,14 +12,27 @@ import { styles } from './styles';
 export function TelaLogin({ navigation }) {
     // Botar o seu na hora de rodar
     const enderecoLocal = '192.168.1.6'
-    const deviceColorScheme = useColorScheme();
 
-    console.log(deviceColorScheme)
 
     const [Email, setEmail] = useState()
     const [Senha, setSenha] = useState()
 
-    
+
+    const deviceColorScheme = useColorScheme();
+    const [backColor, setBackColor] = useState('')
+    const [textColor, setTextColor] = useState('')
+
+    useEffect(() => {
+        if (deviceColorScheme == 'dark') {
+            setBackColor('#181a1b')
+            setTextColor('#FFF')
+        } else {
+            setBackColor('#FFF')
+            setTextColor('#000')
+        }
+    })
+
+
 
     async function validarLogin() {
 
@@ -61,46 +74,53 @@ export function TelaLogin({ navigation }) {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: backColor }]}>
             <View>
-                <Image 
+                <Image
                     style={styles.logo}
                     source={{
                         uri: 'https://images.vexels.com/media/users/3/207818/isolated/preview/df04bb2bfb541b8110f2c70ba7cfb164-silhueta-de-aguia-com-emblema-de-heraldica.png',
-                        }}/>
-                
-                <Text>useColorScheme(): {deviceColorScheme}</Text>
+                    }} />
 
                 <TextInput
                     placeholder="E-mail cadastrado"
                     keyboardType="email-address"
                     placeholderTextColor="#bdb7af"
-                    style={styles.caixa}
+                    style={[styles.caixa, {
+                        borderBottomColor: textColor,
+                        color: textColor
+                    }]}
                     onChangeText={(texto) => setEmail(texto)}
                     value={Email} />
 
                 <TextInput
                     placeholder="Senha"
                     placeholderTextColor="#bdb7af"
-                    style={styles.caixa}
+                    style={[styles.caixa, {
+                        borderBottomColor: textColor,
+                        color: textColor
+                    }]}
                     secureTextEntry={true}
                     onChangeText={(texto) => setSenha(texto)}
                     value={Senha} />
 
                 <TouchableOpacity
-                    style={[styles.botao, { backgroundColor: `#c20036` }]}
+                    style={[styles.botao, {backgroundColor: `#c20036`,}]}
                     onPress={() => validarLogin()}>
-                    <Text style={styles.textBotao}>
+                    <Text style={[styles.textBotao]}>
                         LOG-IN
                     </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.botao, 
-                        {borderWidth: 0.5,
-                        borderColor: '#e8e6e3',}]}
+                    style={[styles.botao,
+                    {
+                        borderWidth: 0.5,
+                        borderColor: textColor,
+                        color: textColor
+                    }]}
                     onPress={() => { navigation.navigate('Cadastro') }}>
-                    <Text style={styles.textBotao}>
+                    <Text style={[styles.textBotao, {color: textColor}]}>
                         CADASTRE-SE
                     </Text>
                 </TouchableOpacity>
