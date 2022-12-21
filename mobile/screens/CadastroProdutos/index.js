@@ -2,12 +2,13 @@
 import { View, Text, TouchableOpacity, Vibration, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { showMessage } from "react-native-flash-message";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Componentes
 import { Entypo } from '@expo/vector-icons'
 import axios from 'axios';
 
 import { styles } from './styles';
+import { useColorScheme } from 'react-native';
 
 export function CadastroProdutos({ navigation }) {
 
@@ -18,6 +19,20 @@ export function CadastroProdutos({ navigation }) {
   const [getArmazenamento, setArmazenamento] = useState()
   const [getValor, setValor] = useState()
   const [getFoto, setFoto] = useState()
+
+  const deviceColorScheme = useColorScheme();
+  const [backColor, setBackColor] = useState('')
+  const [textColor, setTextColor] = useState('')
+
+  useEffect(() => {
+    if (deviceColorScheme == 'dark') {
+      setBackColor('#181a1b')
+      setTextColor('#FFF')
+    } else {
+      setBackColor('#FFF')
+      setTextColor('#000')
+    }
+  })
 
 
   async function inserirDados() {
@@ -58,7 +73,7 @@ export function CadastroProdutos({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: backColor }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => {
           navigation.goBack()
@@ -66,43 +81,59 @@ export function CadastroProdutos({ navigation }) {
           <Entypo
             name="chevron-thin-left"
             size={25}
-            color={'black'} />
+            color={textColor} />
         </TouchableOpacity>
-        <Text style={styles.texto}>
+        <Text style={[styles.texto, { color: textColor }]}>
           Cadastro de produto
         </Text>
       </View>
 
       <View style={styles.dados}>
 
-        <Text style={styles.text}>Nome</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Produto"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setNome(texto)}
           value={getNome} />
 
-        <Text style={styles.text}>Capacidade</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Capacidade"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           keyboardType="numeric"
           onChangeText={(texto) => setArmazenamento(texto)}
           value={getArmazenamento} />
 
-        <Text style={styles.text}>Preço (R$)</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Preço (R$)"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           keyboardType="numeric"
           onChangeText={(texto) => setValor(texto)}
           value={getValor} />
 
-        <Text style={styles.text}>Foto (url)</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Foto (url)"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setFoto(texto)}
           value={getFoto} />
 
         <TouchableOpacity
-          style={styles.botao}
+          style={[styles.botao, {backgroundColor: `#c20036`}]}
           onPress={() => inserirDados()}>
 
           <Text style={styles.textBotao}>

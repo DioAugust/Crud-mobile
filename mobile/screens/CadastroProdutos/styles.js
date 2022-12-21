@@ -23,28 +23,27 @@ export const styles = StyleSheet.create({
   },
   caixa: {
     width: 300,
-    backgroundColor: "white",
+    color: 'white',
     borderRadius: 5,
-    height: 35,
-    borderColor: 'black', 
-    borderWidth: 1, 
+    height: 40,
+    borderBottomWidth: 1,
+    marginBottom: 20,
+    fontSize: 18,
   },
   text: {
     fontSize: 25,
     marginBottom: 10,
   },
   botao: {
-    height: 50,
+    height: 40,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 30,
     width: 300,
     marginTop: 20,
-    backgroundColor: '#3693ff'
   },
   textBotao: {
     textAlign: 'center',
-    fontSize: 30,
-    color: 'white',
+    fontSize: 20,
+    color: '#e8e6e3',
   }
 });

@@ -105,7 +105,7 @@ export function TelaLogin({ navigation }) {
                     value={Senha} />
 
                 <TouchableOpacity
-                    style={[styles.botao, {backgroundColor: `#c20036`,}]}
+                    style={[styles.botao, {backgroundColor: `#c20036`}]}
                     onPress={() => validarLogin()}>
                     <Text style={[styles.textBotao]}>
                         LOG-IN
