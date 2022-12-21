@@ -98,7 +98,7 @@ export function Home({ navigation, route }) {
                 foto: l.foto
               }
             )}>
-              <Card >
+              <Card  theme={{backgroundColor: backColor}}>
                 <Card.Divider />
                 <Card.Image
                   style={styles.image}
@@ -107,10 +107,10 @@ export function Home({ navigation, route }) {
                       `${l.foto}`,
                   }}
                 />
-                <View>
-                  <Text><Card.Title>Produto: </Card.Title>{l.nome}</Text>
-                  <Text><Card.Title>Armazenamento: </Card.Title>{l.armazenamento}gb</Text>
-                  <Text><Card.Title>Valor: R${l.valor}</Card.Title> </Text>
+                <View >
+                  <Text style={{color: textColor}}><Card.Title style={{color: textColor}}>Produto: </Card.Title>{l.nome}</Text>
+                  <Text style={{color: textColor}}><Card.Title style={{color: textColor}}>Armazenamento: </Card.Title>{l.armazenamento}gb</Text>
+                  <Text ><Card.Title style={{color: textColor}}>Valor: R${l.valor}</Card.Title> </Text>
                 </View>
               </Card>
             </TouchableOpacity>
