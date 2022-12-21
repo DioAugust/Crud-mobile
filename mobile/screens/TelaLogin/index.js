@@ -84,8 +84,8 @@ export function TelaLogin({ navigation }) {
 
                 <TextInput
                     placeholder="E-mail cadastrado"
-                    keyboardType="email-address"
                     placeholderTextColor="#bdb7af"
+                    keyboardType="email-address"
                     style={[styles.caixa, {
                         borderBottomColor: textColor,
                         color: textColor

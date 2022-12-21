@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
   },
   dados: {
     marginTop: 180,
-    backgroundColor: 'lightgray',
     height: 500,
     width: 350,
     borderRadius: 10,
@@ -25,28 +24,27 @@ export const styles = StyleSheet.create({
   },
   texto: {
     fontSize: 25,
-    marginRight: 150
-  }, 
+    marginRight: 140
+  },
   caixa: {
     width: 300,
-    backgroundColor: "white",
+    color: 'white',
     borderRadius: 5,
-    height: 35,
-    borderColor: 'black', 
-    borderWidth: 1, 
+    height: 40,
+    borderBottomWidth: 1,
+    marginBottom: 10,
+    fontSize: 18,
   },
   text: {
     fontSize: 25,
     marginBottom: 10,
   },
   botao: {
-    height: 50,
+    height: 40,
     display: 'flex',
     justifyContent: 'center',
-    borderRadius: 30,
     width: 300,
     marginTop: 20,
-    backgroundColor: '#3693ff'
   },
   textBotao: {
     textAlign: 'center',

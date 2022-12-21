@@ -1,5 +1,5 @@
 // React import
-import { View, Text, TouchableOpacity, Vibration, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Vibration, TextInput, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { showMessage } from "react-native-flash-message";
 import { useState, useEffect } from 'react';
@@ -23,14 +23,27 @@ export function Perfil({ navigation, route }) {
   const [Foto, setFoto] = useState()
   const [Nome, setNome] = useState()
 
+  const deviceColorScheme = useColorScheme();
+  const [backColor, setBackColor] = useState('')
+  const [textColor, setTextColor] = useState('')
+
+  useEffect(() => {
+    if (deviceColorScheme == 'dark') {
+      setBackColor('#181a1b')
+      setTextColor('#FFF')
+    } else {
+      setBackColor('#FFF')
+      setTextColor('#000')
+    }
+  })
+
   const image_url = { uri: Foto }
 
   useEffect(() => {
-     function getUser(valor) {
+    function getUser(valor) {
       console.log(Email)
-       axios.get(`http://${enderecoLocal}:3000/usuario/` + valor)
+      axios.get(`http://${enderecoLocal}:3000/usuario/` + valor)
         .then((response) => {
-          console.log(response.data[0])
           setNome(response.data[0].nome)
           setFoto(response.data[0].foto)
         }).catch((error) => {
@@ -44,9 +57,7 @@ export function Perfil({ navigation, route }) {
       setEmail(email)
       getUser(email)
     }
-      
-    
-    
+
   }, [refresh])
 
   async function alterarUser() {
@@ -83,7 +94,7 @@ export function Perfil({ navigation, route }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: backColor }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => {
           navigation.goBack()
@@ -91,10 +102,10 @@ export function Perfil({ navigation, route }) {
           <Entypo
             name="chevron-thin-left"
             size={25}
-            color={'black'}
+            color={textColor}
           />
         </TouchableOpacity>
-        <Text style={styles.texto}>
+        <Text style={[styles.texto, { color: textColor }]}>
           Perfil
         </Text>
       </View>
@@ -108,27 +119,30 @@ export function Perfil({ navigation, route }) {
           />
         </TouchableOpacity>
 
-        <Text style={styles.text}>Nome</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Nome"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, { color: textColor, borderBottomColor: textColor }]}
           onChangeText={(texto) => setNome(texto)}
           value={Nome} />
 
-        <Text style={styles.text}>Email</Text>
         <TextInput
+          placeholder="E-mail"
+          placeholderTextColor="#bdb7af"
           keyboardType="email-address"
-          style={styles.caixa}
+          style={[styles.caixa, { color: textColor, borderBottomColor: textColor }]}
           onChangeText={(texto) => setEmail(texto)}
           value={Email} />
 
-        <Text style={styles.text}>Foto</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Foto"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, { color: textColor, borderBottomColor: textColor }]}
           onChangeText={(texto) => setFoto(texto)}
           value={Foto} />
 
         <TouchableOpacity
-          style={styles.botao}
+          style={[styles.botao, { backgroundColor: `#c20036` }]}
           onPress={() => alterarUser()}>
           <Text style={styles.textBotao}>
             Atualizar
