@@ -8,11 +8,27 @@ import { Entypo } from '@expo/vector-icons'
 import axios from 'axios';
 // Styles
 import { styles } from './styles';
+import { useColorScheme } from 'react-native';
 
 export function AlterarProduto({ navigation, route }) {
 
   // Botar o seu na hora de rodar
   const enderecoLocal = '192.168.1.6'
+
+  const deviceColorScheme = useColorScheme();
+  const [backColor, setBackColor] = useState('')
+  const [textColor, setTextColor] = useState('')
+
+  useEffect(() => {
+    if (deviceColorScheme == 'dark') {
+      setBackColor('#181a1b')
+      setTextColor('#FFF')
+    } else {
+      setBackColor('#FFF')
+      setTextColor('#000')
+    }
+  })
+
 
   const [getNome, setNome] = useState()
   const [getArmazenamento, setArmazenamento] = useState()
@@ -89,7 +105,7 @@ export function AlterarProduto({ navigation, route }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: backColor }]}>
 
       <View style={styles.header}>
         <TouchableOpacity onPress={() => {
@@ -98,43 +114,64 @@ export function AlterarProduto({ navigation, route }) {
           <Entypo
             name="chevron-thin-left"
             size={25}
-            color={'black'} />
+            color={textColor} />
         </TouchableOpacity>
-        <Text style={styles.texto}>
+        <Text style={[styles.texto, { color: textColor }]}>
           Alterar produto
         </Text>
       </View>
 
       <View style={styles.dados}>
 
-        <Text style={styles.text}>Nome</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Produto"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setNome(texto)}
           value={getNome} />
 
-        <Text style={styles.text}>Capacidade (Gb)</Text>
         <TextInput
+          placeholder="Capacidade (Gb)"
+          placeholderTextColor="#bdb7af"
           keyboardType="numeric"
-          style={styles.caixa}
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setArmazenamento(texto)}
           value={getArmazenamento} />
 
-        <Text style={styles.text}>Preço (R$)</Text>
         <TextInput
+          placeholder="Preço (R$)"
+          placeholderTextColor="#bdb7af"
           keyboardType="numeric"
-          style={styles.caixa}
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setValor(texto)}
           value={getValor} />
 
-        <Text style={styles.text}>Foto (Url)</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Foto (Url)"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setFoto(texto)}
           value={getFoto} />
 
         <TouchableOpacity
-          style={styles.botao}
+          style={[styles.botao,
+          {
+            borderWidth: 0.5,
+            borderColor: textColor,
+            color: textColor
+          }]}
           onPress={() => alterarDados()}>
 
           <Text style={styles.textBotao}>
@@ -143,7 +180,7 @@ export function AlterarProduto({ navigation, route }) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.botao, { backgroundColor: `red` }]}
+          style={[styles.botao, { backgroundColor: `#c20036` }]}
           onPress={() => excluirDados()}>
 
           <Text style={styles.textBotao}>
