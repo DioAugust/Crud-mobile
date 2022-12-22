@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
       },
       caixa: {
         width: 300,
-        color: 'white',
         borderRadius: 5,
         height: 40,
         borderBottomWidth: 1,

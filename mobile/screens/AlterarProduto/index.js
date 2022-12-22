@@ -174,7 +174,7 @@ export function AlterarProduto({ navigation, route }) {
           }]}
           onPress={() => alterarDados()}>
 
-          <Text style={styles.textBotao}>
+          <Text style={[styles.textBotao, {color: textColor}]}>
             Alterar
           </Text>
         </TouchableOpacity>

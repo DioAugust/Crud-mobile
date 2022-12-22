@@ -100,6 +100,7 @@ export function TelaLogin({ navigation }) {
                         borderBottomColor: textColor,
                         color: textColor
                     }]}
+                    
                     secureTextEntry={true}
                     onChangeText={(texto) => setSenha(texto)}
                     value={Senha} />

@@ -16,7 +16,7 @@ export function Home({ navigation, route }) {
 
   // Botar o seu na hora de rodar
   const enderecoLocal = '192.168.1.6'
-  
+
   const refresh = useIsFocused()
 
   const deviceColorScheme = useColorScheme();
@@ -57,7 +57,7 @@ export function Home({ navigation, route }) {
   }, [])
 
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: backColor}]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: backColor }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => { navigation.goBack() }}>
           <Entypo
@@ -66,7 +66,7 @@ export function Home({ navigation, route }) {
             color={textColor}
           />
         </TouchableOpacity>
-        <Text style={[styles.texto, {color: textColor}]}>
+        <Text style={[styles.texto, { color: textColor }]}>
           Lista de produtos
         </Text>
 
@@ -77,13 +77,15 @@ export function Home({ navigation, route }) {
             color={textColor} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { navigation.navigate('Perfil', {
-          email: Email
-        }) }}>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('Perfil', {
+            email: Email
+          })
+        }}>
           <AntDesign
             name="user"
             size={25}
-            color={textColor}/>
+            color={textColor} />
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.scroll}>
@@ -98,8 +100,8 @@ export function Home({ navigation, route }) {
                 foto: l.foto
               }
             )}>
-              <Card  theme={{backgroundColor: backColor}}>
-                <Card.Divider />
+              <Card theme={{ backgroundColor: backColor }}>
+                <Card.Divider style={{ backgroundColor: '#aa1308' }} />
                 <Card.Image
                   style={styles.image}
                   source={{
@@ -108,9 +110,9 @@ export function Home({ navigation, route }) {
                   }}
                 />
                 <View >
-                  <Text style={{color: textColor}}><Card.Title style={{color: textColor}}>Produto: </Card.Title>{l.nome}</Text>
-                  <Text style={{color: textColor}}><Card.Title style={{color: textColor}}>Armazenamento: </Card.Title>{l.armazenamento}gb</Text>
-                  <Text ><Card.Title style={{color: textColor}}>Valor: R${l.valor}</Card.Title> </Text>
+                  <Text style={{ color: textColor }}><Card.Title style={{ color: textColor }}>Produto: </Card.Title>{l.nome}</Text>
+                  <Text style={{ color: textColor }}><Card.Title style={{ color: textColor }}>Armazenamento: </Card.Title>{l.armazenamento}gb</Text>
+                  <Text ><Card.Title style={{ color: textColor }}>Valor: R${l.valor}</Card.Title> </Text>
                 </View>
               </Card>
             </TouchableOpacity>

@@ -15,11 +15,6 @@ export function Cadastro({ navigation }) {
   // Botar o seu na hora de rodar
   const enderecoLocal = '192.168.1.6'
 
-  const [Email, setEmail] = useState()
-  const [Senha, setSenha] = useState()
-  const [Nome, setNome] = useState()
-  const [Foto, setFoto] = useState()
-
   const deviceColorScheme = useColorScheme();
   const [backColor, setBackColor] = useState('')
   const [textColor, setTextColor] = useState('')
@@ -33,6 +28,12 @@ export function Cadastro({ navigation }) {
       setTextColor('#000')
     }
   })
+
+  const [Email, setEmail] = useState()
+  const [Senha, setSenha] = useState()
+  const [Nome, setNome] = useState()
+  const [Foto, setFoto] = useState()
+
 
   async function novoUser() {
     if (Email == null || Senha == null || Nome == null || Foto == null) {
@@ -69,7 +70,7 @@ export function Cadastro({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={[styles.container, {backgroundColor: backColor}]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: backColor }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => {
           navigation.goBack()
@@ -80,41 +81,57 @@ export function Cadastro({ navigation }) {
             color={textColor}
           />
         </TouchableOpacity>
-        <Text style={[styles.texto, {color: textColor}]}>
+        <Text style={[styles.texto, { color: textColor }]}>
           Cadastro de usuario
         </Text>
       </View>
 
       <View style={styles.dados}>
 
-        <Text style={[styles.text, {color: textColor}]}>Nome</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Nome"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setNome(texto)}
           value={Nome} />
 
-        <Text style={[styles.text, {color: textColor}]}>Email</Text>
         <TextInput
+          placeholder="Email"
+          placeholderTextColor="#bdb7af"
           keyboardType="email-address"
-          style={styles.caixa}
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setEmail(texto)}
           value={Email} />
 
-        <Text style={[styles.text, {color: textColor}]}>Senha</Text>
         <TextInput
+          placeholder="Senha"
+          placeholderTextColor="#bdb7af"
           secureTextEntry={true}
-          style={styles.caixa}
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setSenha(texto)}
           value={Senha} />
 
-        <Text style={[styles.text, {color: textColor}]}>Foto</Text>
         <TextInput
-          style={styles.caixa}
+          placeholder="Foto (url)"
+          placeholderTextColor="#bdb7af"
+          style={[styles.caixa, {
+            borderBottomColor: textColor,
+            color: textColor
+          }]}
           onChangeText={(texto) => setFoto(texto)}
           value={Foto} />
 
         <TouchableOpacity
-          style={styles.botao}
+          style={[styles.botao, { backgroundColor: '#c20036' }]}
           onPress={() => novoUser()}>
           <Text style={styles.textBotao}>
             Cadastrar

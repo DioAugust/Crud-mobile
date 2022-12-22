@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   textBotao: {
     textAlign: 'center',
-    fontSize: 30,
-    color: 'white',
+    fontSize: 20,
+    color: '#e8e6e3',
   }
 });

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 32,
     marginTop: 20,
     justifyContent: 'space-between',
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   texto: {
     fontSize: 25

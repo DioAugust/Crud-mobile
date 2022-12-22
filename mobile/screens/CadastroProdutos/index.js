@@ -36,7 +36,7 @@ export function CadastroProdutos({ navigation }) {
 
 
   async function inserirDados() {
-    if (getNome == null || getArmazenamento == null || getValor == null) {
+    if (getNome == null || getArmazenamento == null || getValor == null || getFoto == null) {
       showMessage({
         message: "Preencha os campos!",
         type: "danger",
